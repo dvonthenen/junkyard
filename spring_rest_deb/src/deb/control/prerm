@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+PATH=/sbin:/usr/local/bin:$PATH
+component=demo-boot
+
+echo Preremove...
+
+service $component stop
+
+echo Done.
