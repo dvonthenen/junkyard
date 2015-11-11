@@ -1,0 +1,73 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          demo-boot
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: demo-boot initscript
+# Description:       Demo Boot
+### END INIT INFO
+
+DESC="Description of the service"
+NAME=demo-boot
+LIB=/usr/local/demo/lib
+VARRUN=/var/run
+LOGDIR=/usr/local/demo/var
+PIDFILE=$VARRUN/$NAME.pid
+SCRIPTNAME=/etc/init.d/$NAME
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin:$JAVA_HOME/bin
+export PATH
+
+# Load the VERBOSE setting and other rcS variables
+. /lib/init/vars.sh
+
+# Define LSB log_* functions.
+# Depend on lsb-base (>= 3.2-14) to ensure that this file is present
+# and status_of_proc is working.
+. /lib/lsb/init-functions
+
+
+start_component() {
+	echo -n "Starting component $1..."
+	java $2 -jar $LIB/$1.jar > $LOGDIR/$NAME.out 2>&1 &
+	echo $! > $PIDFILE
+}
+
+stop_component() {
+	pid=`ps aux | grep $NAME.jar | awk '{print $2}'`
+	kill -9 $pid > /dev/null
+}
+
+status() {
+	pid=`ps aux | grep $NAME.jar | awk '{print $2}'`
+	if [ "${pid}" -eq "0" ] ; then
+	    echo "`date`: $NAME service running"
+	else
+	    echo "`date`: $NAME is not running"
+	fi
+}
+
+case "$1" in
+  start)
+	start_component $NAME $JAVA_OPTS
+	;;
+  stop)
+	stop_component
+	;;
+  status)
+	status
+	;;
+  restart)
+	start_component $NAME $JAVA_OPTS
+	stop_component
+	;;
+  *)
+
+	echo "Usage: $SCRIPTNAME {start|stop|status|restart}" >&2
+	exit 3
+	;;
+esac
+exit 0
+

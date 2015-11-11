@@ -1,0 +1,13 @@
+#!/bin/bash
+
+PATH=/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/bin
+component=demo-boot
+vcsetc=/usr/local/demo/etc
+
+echo Installing $component as a service
+chmod 755 /usr/local/demo/etc/$component
+cp -f /usr/local/demo/etc/$component /etc/init.d/
+update-rc.d $component defaults
+service $component start
+
+echo Done.
