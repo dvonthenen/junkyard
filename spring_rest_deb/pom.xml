@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.test</groupId>
+	<artifactId>demo-boot</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>demo-boot</name>
+	<description>Demo project for Spring Boot</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.2.5.RELEASE</version>
+		<relativePath/>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<start-class>demo.DemoApplication</start-class>
+
+		<java.version>1.8</java.version>
+		<rpmVersion>0.0.1</rpmVersion>
+		<rpmRelease>SNAPSHOT</rpmRelease>
+
+		<springboot.version>1.2.5.RELEASE</springboot.version>
+		<org.springframework-version>4.1.5.RELEASE</org.springframework-version>
+		<org.springframework.amqp-version>1.4.2.RELEASE</org.springframework.amqp-version>
+		<org.springframework.retry-version>1.0.3.RELEASE</org.springframework.retry-version>
+		<org.springframework.hateoas-version>0.17.0.RELEASE</org.springframework.hateoas-version>
+		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<log4j-version>1.2.16</log4j-version>
+		<org.objenesis-version>2.1</org.objenesis-version>
+		<org.codehaus.jackson-version>1.9.13</org.codehaus.jackson-version>
+		<com.cloudbees.thirdparty-version>5.0.0</com.cloudbees.thirdparty-version>
+		<dom4j-version>1.6.1</dom4j-version>
+		<commons-io-version>2.2</commons-io-version>
+		<com.fasterxml.jackson.core-version>2.3.2</com.fasterxml.jackson.core-version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>	
+		
+	</dependencies>
+	
+	<build>
+		<plugins>
+		
+			<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+			<version>${springboot.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<executable>/usr/lib/jvm/java-8-oracle/bin/javac</executable>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+      <plugin>
+        <artifactId>jdeb</artifactId>
+        <groupId>org.vafer</groupId>
+        <version>1.4</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jdeb</goal>
+            </goals>
+            <configuration>
+				<verbose>true</verbose>
+				<controlDir>${basedir}/src/deb/control</controlDir>
+
+              <dataSet>
+              
+                                <data>
+                                  <src>${project.build.directory}/${project.build.finalName}.jar</src>
+                                  <dst>${artifactId}.jar</dst>
+                                  <type>file</type>
+                                  <mapper>
+                                    <type>perm</type>
+                                    <prefix>/usr/local/demo/lib</prefix>
+                                  </mapper>
+                                </data>
+                                
+                                <data>
+                                  <src>${basedir}/src/deb/etc</src>
+                                  <type>directory</type>
+                                  <mapper>
+                                    <type>perm</type>
+                                    <prefix>/usr/local/demo/etc</prefix>
+                                  </mapper>
+                                </data>
+                                
+                               <data>
+                                  <src>${basedir}/src/deb/var</src>
+                                  <type>directory</type>
+                                  <mapper>
+                                    <type>perm</type>
+                                    <prefix>/usr/local/demo/var</prefix>
+                                  </mapper>
+                                </data>
+
+              </dataSet>
+
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+		</plugins>
+	</build>
+	
+
+</project>

@@ -1,0 +1,19 @@
+#!/bin/bash -e
+
+component=demo-boot
+
+PATH=/usr/local/bin:$PATH
+
+echo Postremove...
+
+# The first argument passed in for "remove" is a numeric representation of how many
+# instances are left. So if $1 is zero, then it's the last instance and therefore
+# we should process it.
+# http://stackoverflow.com/questions/7398834/rpm-upgrade-uninstalls-the-rpm
+
+
+echo Removing $component from init.d
+update-rc.d -f $component remove
+rm -f /etc/init.d/$component
+
+echo Done.

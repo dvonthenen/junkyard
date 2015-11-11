@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+component=demo-boot
+
+PATH=/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/bin
+paths="/usr/local/avamar-tomcat/webapps/$component /usr/local/avamar-tomcat/webapps/$component.war"
+
+echo Preinstall...
+
+echo Done.
