@@ -1,0 +1,42 @@
+## Autotools (autoconf, automake, and libtool) Hello World
+
+This example is a simple Hello World type application that makes use of
+autoconf and automake utilities (libtool to follow shortly). It uses sys/time.h
+to provide an example of code oh how the behavior changes on different
+platforms.
+
+### Autotools Workflow
+
+This is a sample developers workflow used for this project.
+
+1. autoscan creates configure.scan which you rename to configure.ac
+2. autoconf uses configure.ac to create configure
+3. configure will use Makefile.in to create Makefile
+4. Run “./configure” and “make” (to test only)
+5. Write your program, keeping portability in mind. Create “Makefile.in”.
+6. As you make changes in code run autoscan, rename configure.scan to
+  configure.ac, run autoheader and autoconf as many times as needed.
+7. ./configure
+8. Check config.h. If necessary, modify source and repeat from step #5.
+9. And lastly, compile! (to test only)
+10. Create “Makefile.am”. Sample:
+           bin_PROGRAMS=main
+           main_SOURCES=main.cpp
+11. Change in configure.ac from AC_CONFIG_HEADER([config.h]) to
+  AC_CONFIG_HEADERS(config.h) then add AM_INIT_AUTOMAKE() with no paramters
+  under AC_INIT
+12. You need to add some requires files. This by running these commands:
+           cp -af /usr/share/automake-1.14/install-sh .
+           cp -af /usr/share/automake-1.14/mkinstalldirs .
+           cp -af /usr/share/automake-1.14/missing .
+           touch aclocal.m4 NEWS README AUTHORS ChangeLog
+           cp -af /usr/share/automake-1.14/INSTALL .
+           cp -af /usr/share/automake-1.14/COPYING .
+13. Run automake --force-missing --add-missing to generate the makefile
+  and fix error messages.
+14. Run aclocal and autoconf
+15. If you need to add/modify code, re-run autoconf and automake after
+  making changes.
+16. Then ./configure and make (to test only)
+17. When you are ready to package or to publish, run make maintainer-clean
+  to remove all auto-generated code.
