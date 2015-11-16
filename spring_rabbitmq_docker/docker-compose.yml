@@ -1,0 +1,21 @@
+rabbit:
+  image: dvonthenen/rabbitmq
+  hostname: rabbitmq
+  ports:
+    - "5672:5672"
+    - "15672:15672"
+
+consumer:
+  image: dvonthenen/consumer
+  hostname: consumer
+  links:
+    - rabbit:rabbit
+
+producer:
+  image: dvonthenen/producer
+  hostname: producer
+  links:
+    - rabbit:rabbit
+    - consumer:consumer
+
+

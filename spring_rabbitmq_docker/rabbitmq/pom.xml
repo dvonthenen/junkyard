@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.springframework.samples.spring</groupId>
+	<artifactId>rabbitmq</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>Spring AMQP Hello World</name>
+	<url>http://www.spring.io</url>
+	<description>
+		<![CDATA[
+      This project shows the usage of Spring AMQP integration classes.
+    ]]>
+	</description>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<docker.image.prefix>dvonthenen</docker.image.prefix>
+
+		<java.version>1.8</java.version>
+		<rpmVersion>0.0.1</rpmVersion>
+		<rpmRelease>SNAPSHOT</rpmRelease>
+
+		<springboot.version>1.2.5.RELEASE</springboot.version>
+		<spring.framework.version>4.1.5.RELEASE</spring.framework.version>
+		<spring.amqp.version>1.4.5.RELEASE</spring.amqp.version>
+	</properties>
+
+	<build>
+		<plugins>
+		
+      <plugin>
+            <groupId>com.spotify</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <version>0.2.3</version>
+            <configuration>
+                <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                <dockerDirectory>src/docker</dockerDirectory>
+                <resources>
+                    <resource>
+                        <targetPath>/</targetPath>
+                        <directory>${project.build.directory}</directory>
+                        <include>${project.build.finalName}.jar</include>
+                    </resource>
+                </resources>
+            </configuration>
+        </plugin>
+
+		</plugins>
+	</build>
+
+</project>
