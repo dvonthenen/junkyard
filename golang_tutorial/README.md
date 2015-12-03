@@ -35,3 +35,15 @@ First package.... with a testing of that package included. Can be executed with 
 
 **12_standardlibraries**  
 Exercising some standard libraries included in golang.
+
+**13_tcpclientserver**  
+A quick and dirty TCP client and server implementation
+
+**14_httpserver**  
+A quick and dirty HTTP implementation. Access via browser using http://127.0.0.1:9000/hello
+
+**15_mutexes**  
+Working with mutexes....
+
+**16_commandlineparams**  
+How to read command line parameters
