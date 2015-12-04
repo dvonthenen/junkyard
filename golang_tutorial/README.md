@@ -47,3 +47,15 @@ Working with mutexes....
 
 **16_commandlineparams**  
 How to read command line parameters
+
+**17_templates**  
+Go HTML templates.... think token substitution in static text. Kind of like Smarty for PHP
+
+**18_simlerestclientserver**  
+Simple REST API server with REST client all using JSON
+
+**19_database**
+Accessing a database (PostgreSQL) using SELECT, INSERT/UPDATE, DELETE
+
+**20_complex**  
+Complex example for a catalog of users in a PostgreSQL database behind a REST API server and client
