@@ -1,4 +1,4 @@
-FROM dvonthenen/mesos-dev:latest
+FROM dvonthenen/mesos-dev:0.26.0
 MAINTAINER David vonThenen (EMCCODE)
 
 ENTRYPOINT cd /isolator/isolator && \
