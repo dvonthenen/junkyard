@@ -13,6 +13,9 @@ vagrant ssh -c 'echo "set nocompatible" | sudo tee $HOME/.vimrc' mesos-slave3
 vagrant ssh -c 'echo "set nocompatible" | sudo tee $HOME/.vimrc' mesos-slave4
 
 #master
+vagrant ssh -c 'grep -v -e mesos /etc/hosts | sudo tee /etc/hosts' mesos-master
+vagrant ssh -c 'echo "11.141.141.10 mesos-master" | sudo tee -a /etc/hosts' mesos-master
+vagrant ssh -c 'echo "11.141.141.10 mesos-master.demo.com" | sudo tee -a /etc/hosts' mesos-master
 vagrant ssh -c 'echo "10.141.141.10" | sudo tee /etc/mesos-master/ip' mesos-master
 vagrant ssh -c 'echo "10.141.141.10" | sudo tee /etc/hostname' mesos-master
 vagrant ssh -c 'echo "10.141.141.10" | sudo tee /etc/mesos-master/hostname' mesos-master
@@ -25,20 +28,31 @@ vagrant ssh -c 'sudo cp /etc/marathon/conf/master /etc/marathon/conf/zk' mesos-m
 vagrant ssh -c 'sudo sed -i -- ''s/mesos/marathon/g'' /etc/marathon/conf/zk' mesos-master
 
 #slaves
+vagrant ssh -c 'grep -v -e mesos /etc/hosts | sudo tee /etc/hosts' mesos-slave1
+vagrant ssh -c 'echo "11.141.141.11 mesos-slave1" | sudo tee -a /etc/hosts' mesos-slave1
+vagrant ssh -c 'echo "11.141.141.11 mesos-slave1.demo.com" | sudo tee -a /etc/hosts' mesos-slave1
 vagrant ssh -c 'echo "10.141.141.11" | sudo tee /etc/mesos-slave/hostname' mesos-slave1
 vagrant ssh -c 'echo "10.141.141.11" | sudo tee /etc/mesos-slave/hostname' mesos-slave1
 vagrant ssh -c 'echo "zk://10.141.141.10:2181/mesos" | sudo tee /etc/mesos/zk' mesos-slave1
+vagrant ssh -c 'grep -v -e mesos /etc/hosts | sudo tee /etc/hosts' mesos-slave2
+vagrant ssh -c 'echo "11.141.141.12 mesos-slave2" | sudo tee -a /etc/hosts' mesos-slave2
+vagrant ssh -c 'echo "11.141.141.12 mesos-slave2.demo.com" | sudo tee -a /etc/hosts' mesos-slave2
 vagrant ssh -c 'echo "10.141.141.12" | sudo tee /etc/mesos-slave/hostname' mesos-slave2
 vagrant ssh -c 'echo "10.141.141.12" | sudo tee /etc/mesos-slave/hostname' mesos-slave2
 vagrant ssh -c 'echo "zk://10.141.141.10:2181/mesos" | sudo tee /etc/mesos/zk' mesos-slave2
+vagrant ssh -c 'grep -v -e mesos /etc/hosts | sudo tee /etc/hosts' mesos-slave3
+vagrant ssh -c 'echo "11.141.141.13 mesos-slave3" | sudo tee -a /etc/hosts' mesos-slave3
+vagrant ssh -c 'echo "11.141.141.13 mesos-slave3.demo.com" | sudo tee -a /etc/hosts' mesos-slave3
 vagrant ssh -c 'echo "10.141.141.13" | sudo tee /etc/mesos-slave/hostname' mesos-slave3
 vagrant ssh -c 'echo "10.141.141.13" | sudo tee /etc/mesos-slave/hostname' mesos-slave3
 vagrant ssh -c 'echo "zk://10.141.141.10:2181/mesos" | sudo tee /etc/mesos/zk' mesos-slave3
+vagrant ssh -c 'grep -v -e mesos /etc/hosts | sudo tee /etc/hosts' mesos-slave4
+vagrant ssh -c 'echo "11.141.141.14 mesos-slave4" | sudo tee -a /etc/hosts' mesos-slave4
+vagrant ssh -c 'echo "11.141.141.14 mesos-slave4.demo.com" | sudo tee -a /etc/hosts' mesos-slave4
 vagrant ssh -c 'echo "10.141.141.14" | sudo tee /etc/mesos-slave/hostname' mesos-slave4
 vagrant ssh -c 'echo "10.141.141.14" | sudo tee /etc/mesos-slave/hostname' mesos-slave4
 vagrant ssh -c 'echo "zk://10.141.141.10:2181/mesos" | sudo tee /etc/mesos/zk' mesos-slave4
 
-#TODO research the DOCKER MACHINE variables
 
 #DNS
 #vagrant ssh -c 'sudo grep -q master /etc/hosts || echo "10.141.141.10 mesos-master" | sudo tee -a /etc/hosts' mesos-master
