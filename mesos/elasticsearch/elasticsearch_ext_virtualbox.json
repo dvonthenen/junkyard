@@ -1,16 +1,15 @@
 {
   "id": "elasticsearch-mesos-scheduler",
-  "container": {
-    "docker": {
-      "image": "dvonthenen/elasticsearch-scheduler-test",
-      "network": "HOST"
-    }
-  },
-  "args": ["--zookeeperMesosUrl", "zk://10.141.141.10:2181/mesos", "--executorImage", "dvonthenen/elasticsearch-executor-test", "--executorTimeout", "3600000", "--executorHealthDelay", "3600000", "--useIpAddress", "true", "--externalVolumeDriver", "rexray"],
+  "cmd": "java -jar elasticsearch-mesos-scheduler-0.7.0.jar --zookeeperMesosUrl zk://10.141.141.10:2181/mesos --frameworkUseDocker false --useIpAddress true --externalVolumeDriver rexray",
   "cpus": 0.5,
   "mem": 512.0,
   "env": {
     "JAVA_OPTS": "-Xms128m -Xmx256m"
   },
-  "instances": 1
+  "instances": 1,
+  "ports": [31100],
+  "requirePorts": true,
+  "uris" : [
+    "file:///tmp/elasticsearch-mesos-scheduler-0.7.0.jar"
+  ]
 }
