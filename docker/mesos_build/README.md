@@ -1,7 +1,7 @@
 ## Mesos Docker Container Images
 
 ### dvonthenen/mesos-dev
-Description: Docker image for a mesos build. Mesos is already pre-compiled within these images. Currently provide versions 0.23.0, 0.23.1, 0.24.0, 0.24.1, 0.25.0, 0.26.0, and 0.27.0. Pull based on the tag to get the desired version.  
+Description: Docker image for a mesos build. Mesos is already pre-compiled within these images. Currently provide versions 0.23.0, 0.23.1, 0.24.0, 0.24.1, 0.25.0, 0.26.0, 0.27.0, and 0.27.1. Pull based on the tag to get the desired version.  
 URL: https://hub.docker.com/r/dvonthenen/mesos-dev/
 
 **Example**  
@@ -10,7 +10,7 @@ docker run dvonthenen/mesos-dev:0.24.1
 
 
 ### dvonthenen/mesos-dev-dvdi
-Description: Docker image for a mesos build that will also build the EMC {code} DVDI isolator. Currently provide versions 0.23.0, 0.23.1, 0.24.0, 0.24.1, 0.25.0, 0.26.0, and 0.27.0. Pull based on the tag to get the desired version.  
+Description: Docker image for a mesos build that will also build the EMC {code} DVDI isolator. Currently provide versions 0.23.0, 0.23.1, 0.24.0, 0.24.1, 0.25.0, 0.26.0, 0.27.0, and 0.27.1. Pull based on the tag to get the desired version.  
 URL: https://hub.docker.com/r/dvonthenen/mesos-dev-dvdi/
 
 **Requires DVDI Source Code**  
