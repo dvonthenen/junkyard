@@ -3,7 +3,6 @@
   "container": {
     "docker": {
       "image": "dvonthenen/postgres-demo",
-      "privileged": true,
       "network": "HOST",
       "parameters": [
         {
@@ -17,7 +16,7 @@
       ]
     }
   },
-  "cpus": 1.0,
-  "mem": 1024.0,
+  "cpus": 0.5,
+  "mem": 512.0,
   "instances": 1
 }
