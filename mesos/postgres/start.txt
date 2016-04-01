@@ -1,0 +1,5 @@
+Starting postgres command line:
+docker run -ti dvonthenen/postgres-demo
+
+Connecting to that instance:
+psql -h localhost demo
