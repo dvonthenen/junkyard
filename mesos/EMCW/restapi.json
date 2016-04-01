@@ -1,0 +1,13 @@
+{
+  "id": "restapi",
+  "uris": [
+    "https://github.com/dvonthenen/goprojects/raw/master/bin/restserver"
+  ],
+  "cmd": "chmod u+x restserver && ./restserver -address=postgres.marathon.mesos -port=$PORT",
+  "mem": 32,
+  "cpus": 0.5,
+  "instances": 1,
+  "constraints": [
+    ["hostname", "UNIQUE"]
+  ]
+}

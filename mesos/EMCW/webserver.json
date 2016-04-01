@@ -1,0 +1,18 @@
+{
+  "id": "webserver",
+  "uris": [
+    "https://github.com/dvonthenen/goprojects/raw/master/bin/statichttpserver"
+  ],
+  "cmd": "chmod u+x statichttpserver && ./statichttpserver -port=$PORT -path=/var/lib/rexray/volumes/webdata",
+  "mem": 16,
+  "cpus": 0.1,
+  "instances": 1,
+  "constraints": [
+    ["hostname", "UNIQUE"]
+  ],
+  "env": {
+    "DVDI_VOLUME_NAME": "webdata",
+    "DVDI_VOLUME_OPTS": "size=5,iops=150,volumetype=io1,newfstype=xfs,overwritefs=false",
+    "DVDI_VOLUME_DRIVER": "rexray"
+  }
+}

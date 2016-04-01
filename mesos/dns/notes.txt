@@ -1,3 +1,0 @@
-sudo sed -i '1s/^/nameserver 127.0.0.1\n /' /etc/resolv.conf
-sudo chattr +i /etc/resolv.conf
-curl -k -XPOST -d @dns.json -H "Content-Type: application/json" TODO:8080/v2/apps
