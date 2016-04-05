@@ -1,0 +1,13 @@
+{
+  "id": "rabbitserver",
+  "uris": [
+    "https://github.com/dvonthenen/goprojects/raw/master/bin/rabbitserver"
+  ],
+  "cmd": "chmod u+x rabbitserver && ./rabbitserver -service=rabbitmq -port=$PORT",
+  "mem": 32,
+  "cpus": 0.5,
+  "instances": 1,
+  "constraints": [
+    ["hostname", "UNIQUE"]
+  ]
+}

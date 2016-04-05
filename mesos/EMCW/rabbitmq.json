@@ -1,0 +1,12 @@
+{
+  "id": "rabbitmq",
+  "container": {
+    "docker": {
+      "image": "dvonthenen/rabbitmq",
+      "network": "HOST"
+    }
+  },
+  "cpus": 0.5,
+  "mem": 512.0,
+  "instances": 1
+}
