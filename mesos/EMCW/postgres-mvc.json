@@ -2,7 +2,7 @@
   "id": "postgres",
   "container": {
     "docker": {
-      "image": "dvonthenen/postgres-demo",
+      "image": "dvonthenen/postgres-mvc-demo",
       "network": "HOST",
       "parameters": [
         {

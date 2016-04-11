@@ -1,0 +1,22 @@
+{
+  "id": "postgres",
+  "container": {
+    "docker": {
+      "image": "dvonthenen/postgres-rabbit-demo",
+      "network": "HOST",
+      "parameters": [
+        {
+          "key": "volume-driver",
+          "value": "rexray"
+        },
+        {
+          "key": "volume",
+          "value": "postgres:/var/lib/postgresql/data"
+        }
+      ]
+    }
+  },
+  "cpus": 0.5,
+  "mem": 512.0,
+  "instances": 1
+}
