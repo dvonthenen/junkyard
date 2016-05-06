@@ -1,5 +1,5 @@
 {
-  "id": "rabbitclient",
+  "id": "rabbitproducer",
   "uris": [
     "https://github.com/dvonthenen/goprojects/raw/master/bin/rabbitclient"
   ],
