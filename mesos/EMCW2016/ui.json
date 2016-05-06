@@ -1,0 +1,13 @@
+{
+  "id": "ui",
+  "uris": [
+    "https://github.com/dvonthenen/goprojects/raw/master/bin/restclient"
+  ],
+  "cmd": "chmod u+x restclient && ./restclient -service=restapi -uiport=$PORT",
+  "mem": 32,
+  "cpus": 0.5,
+  "instances": 1,
+  "constraints": [
+    ["hostname", "UNIQUE"]
+  ]
+}

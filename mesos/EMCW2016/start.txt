@@ -1,0 +1,61 @@
+
+25:
+curl -k -XPOST -d @dns_start25.json -H "Content-Type: application/json" ec2-52-37-118-33.us-west-2.compute.amazonaws.com:8080/v2/apps
+
+27:
+curl -k -XPOST -d @dns_start27.json -H "Content-Type: application/json" ec2-52-38-65-6.us-west-2.compute.amazonaws.com:8080/v2/apps
+
+
+
+Rabbit:
+curl -k -XPOST -d @postgres-rabbit.json -H "Content-Type: application/json" ec2-52-38-65-6.us-west-2.compute.amazonaws.com:8080/v2/apps
+curl -k -XPOST -d @rabbitmq.json -H "Content-Type: application/json" ec2-52-38-65-6.us-west-2.compute.amazonaws.com:8080/v2/apps
+curl -k -XPOST -d @rabbitconsumer.json -H "Content-Type: application/json" ec2-52-38-65-6.us-west-2.compute.amazonaws.com:8080/v2/apps
+curl -k -XPOST -d @rabbitproducer.json -H "Content-Type: application/json" ec2-52-38-65-6.us-west-2.compute.amazonaws.com:8080/v2/apps
+
+
+
+Start MVC:
+curl -k -XPOST -d @postgres-mvc.json -H "Content-Type: application/json" ec2-52-38-65-6.us-west-2.compute.amazonaws.com:8080/v2/apps
+curl -k -XPOST -d @restapi.json -H "Content-Type: application/json" ec2-52-38-65-6.us-west-2.compute.amazonaws.com:8080/v2/apps
+curl -k -XPOST -d @ui.json -H "Content-Type: application/json" ec2-52-38-65-6.us-west-2.compute.amazonaws.com:8080/v2/apps
+
+
+
+Clean out ES:
+First stop on all masters:
+service marathon stop
+stop mesos-master
+service zookeeper stop
+rm -rf /var/lib/zookeeper/version-2
+
+You might have to run this on all slaves:
+stop mesos-slave
+rm -f /tmp/mesos/meta/slaves/latest
+start mesos-slave
+
+Then start:
+service zookeeper start
+start mesos-master
+service marathon start
+
+
+Create the store:
+curl -XPUT 'http://XXXXXXXXX:31000/comicbook/' -d '{
+    "settings" : {
+        "index" : {
+            "number_of_shards" : 3,
+            "number_of_replicas" : 1
+        }
+    }
+}'
+
+Populate the data:
+Edit file and replace with ES node....
+php elasticput.php
+
+Query:
+http://XXXXXXXXX:31000/comicbook/superhero/_search?q=summary:Kent
+
+
+curl -k -XPOST -d @elasticsearch.json -H "Content-Type: application/json" ec2-52-37-118-33.us-west-2.compute.amazonaws.com:8080/v2/apps

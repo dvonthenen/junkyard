@@ -1,0 +1,22 @@
+{
+  "id": "elasticsearch-mesos-scheduler",
+  "container": {
+    "docker": {
+      "image": "mesos/elasticsearch-scheduler:1.0.1",
+      "network": "HOST"
+    }
+  },
+  "args": [
+    "--zookeeperMesosUrl", "zk://172.31.44.94:2181,172.31.38.145:2181,172.31.40.63:2181/mesos",
+    "--elasticsearchDockerImage", "elasticsearch:2.2.1",
+    "--elasticsearchCpu", "0.5",
+    "--elasticsearchRam", "1024",
+    "--externalVolumeDriver", "rexray"
+  ],
+  "cpus": 1.0,
+  "mem": 512.0,
+  "env": {
+    "JAVA_OPTS": "-Xms64m -Xmx256m"
+  },
+  "instances": 1
+}
