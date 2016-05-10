@@ -1,24 +1,24 @@
 
 25:
-curl -k -XPOST -d @dns_start25.json -H "Content-Type: application/json" ec2-52-37-118-33.us-west-2.compute.amazonaws.com:8080/v2/apps
+curl -k -XPOST -d @dns_start25.json -H "Content-Type: application/json" <marathon ip>:8080/v2/apps
 
 27:
-curl -k -XPOST -d @dns_start27.json -H "Content-Type: application/json" ec2-52-38-65-6.us-west-2.compute.amazonaws.com:8080/v2/apps
+curl -k -XPOST -d @dns_start27.json -H "Content-Type: application/json" <marathon ip>:8080/v2/apps
 
 
 
 Rabbit:
-curl -k -XPOST -d @postgres-rabbit.json -H "Content-Type: application/json" ec2-52-38-65-6.us-west-2.compute.amazonaws.com:8080/v2/apps
-curl -k -XPOST -d @rabbitmq.json -H "Content-Type: application/json" ec2-52-38-65-6.us-west-2.compute.amazonaws.com:8080/v2/apps
-curl -k -XPOST -d @rabbitconsumer.json -H "Content-Type: application/json" ec2-52-38-65-6.us-west-2.compute.amazonaws.com:8080/v2/apps
-curl -k -XPOST -d @rabbitproducer.json -H "Content-Type: application/json" ec2-52-38-65-6.us-west-2.compute.amazonaws.com:8080/v2/apps
+curl -k -XPOST -d @postgres-rabbit.json -H "Content-Type: application/json" <marathon ip>:8080/v2/apps
+curl -k -XPOST -d @rabbitmq.json -H "Content-Type: application/json" <marathon ip>:8080/v2/apps
+curl -k -XPOST -d @rabbitconsumer.json -H "Content-Type: application/json" <marathon ip>:8080/v2/apps
+curl -k -XPOST -d @rabbitproducer.json -H "Content-Type: application/json" <marathon ip>:8080/v2/apps
 
 
 
 Start MVC:
-curl -k -XPOST -d @postgres-mvc.json -H "Content-Type: application/json" ec2-52-38-65-6.us-west-2.compute.amazonaws.com:8080/v2/apps
-curl -k -XPOST -d @restapi.json -H "Content-Type: application/json" ec2-52-38-65-6.us-west-2.compute.amazonaws.com:8080/v2/apps
-curl -k -XPOST -d @ui.json -H "Content-Type: application/json" ec2-52-38-65-6.us-west-2.compute.amazonaws.com:8080/v2/apps
+curl -k -XPOST -d @postgres-mvc.json -H "Content-Type: application/json" <marathon ip>:8080/v2/apps
+curl -k -XPOST -d @restapi.json -H "Content-Type: application/json" <marathon ip>:8080/v2/apps
+curl -k -XPOST -d @ui.json -H "Content-Type: application/json" <marathon ip>:8080/v2/apps
 
 
 
@@ -58,4 +58,4 @@ Query:
 http://XXXXXXXXX:31000/comicbook/superhero/_search?q=summary:Kent
 
 
-curl -k -XPOST -d @elasticsearch.json -H "Content-Type: application/json" ec2-52-37-118-33.us-west-2.compute.amazonaws.com:8080/v2/apps
+curl -k -XPOST -d @elasticsearch.json -H "Content-Type: application/json" <marathon ip>:8080/v2/apps
