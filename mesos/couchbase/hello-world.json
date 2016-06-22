@@ -1,0 +1,13 @@
+{
+    "id": "/hello-world",
+    "cpus": 0.5,
+    "mem": 512,
+    "container": {
+        "type": "DOCKER",
+        "docker": {
+            "image": "hello-world",
+            "privileged": false,
+            "forcePullImage": true
+        }
+    }
+}

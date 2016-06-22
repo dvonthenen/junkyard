@@ -1,0 +1,26 @@
+{
+    "id": "/demo-boot",
+    "cpus": 1,
+    "mem": 1024,
+    "container": {
+        "type": "DOCKER",
+        "docker": {
+            "image": "dvonthenen/demo-boot",
+            "network": "BRIDGE",
+            "portMappings": [
+                {
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 8000,
+                    "hostPort": 8000,
+                    "protocol": "tcp"
+                }
+            ],
+            "privileged": false,
+            "forcePullImage": true
+        }
+    }
+}
