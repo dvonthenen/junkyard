@@ -1,0 +1,27 @@
+{
+    "id": "/couchbase1",
+    "cpus": 1,
+    "mem": 1024,
+    "container": {
+        "type": "DOCKER",
+        "volumes": [
+            {
+                "containerPath": "/opt/couchbase/var",
+                "hostPath": "/tmp/couchbase1/data",
+                "mode": "RW"
+            }
+        ],
+        "docker": {
+            "image": "couchbase:4.1.0",
+            "privileged": false,
+            "forcePullImage": true
+        }
+    },
+    "instances": 1,
+    "env": {
+      "DVDI_VOLUME_NAME": "couchbase1",
+      "DVDI_VOLUME_DRIVER": "rexray",
+      "DVDI_VOLUME_OPTS": "size=32,overwritefs=true",
+      "DVDI_VOLUME_CONTAINERPATH": "/tmp/couchbase1/data"
+    }
+}

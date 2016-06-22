@@ -1,0 +1,13 @@
+{
+    "id": "/demo-boot",
+    "cpus": 1,
+    "mem": 1024,
+    "container": {
+        "type": "DOCKER",
+        "docker": {
+            "image": "dvonthenen/demo-boot",
+            "privileged": false,
+            "forcePullImage": true
+        }
+    }
+}

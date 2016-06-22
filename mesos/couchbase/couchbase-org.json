@@ -1,0 +1,93 @@
+{
+    "id": "/couchbase",
+    "cpus": 2,
+    "mem": 4096,
+    "container": {
+        "type": "DOCKER",
+        "volumes": [],
+        "docker": {
+            "image": "misterbisson/triton-couchbase:enterprise-3.0.3-r3",
+            "network": "BRIDGE",
+            "portMappings": [
+                {
+                    "containerPort": 8091,
+                    "hostPort": 8091,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 8092,
+                    "hostPort": 8092,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 11207,
+                    "hostPort": 11207,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 11209,
+                    "hostPort": 11209,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 11210,
+                    "hostPort": 11210,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 11211,
+                    "hostPort": 11211,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 18091,
+                    "hostPort": 18091,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 18092,
+                    "hostPort": 18092,
+                    "protocol": "tcp"
+                }
+            ],
+            "privileged": false,
+            "parameters": [
+                {
+                    "key": "link",
+                    "value": "mesos_consul_1:consul"
+                },
+                {
+                    "key": "restart",
+                    "value": "always"
+                }
+            ],
+            "env": [
+                {
+                    "CONSUL_HOST": "http://consul:8500"
+                },
+                {
+                    "COUCHBASE_SERVICE_NAME": "couchbase"
+                },
+                {
+                    "COUCHBASE_USER": "Administrator"
+                },
+                {
+                    "COUCHBASE_PASS": "password"
+                }
+            ],
+            "forcePullImage": false
+        }
+    },
+    "instances": 1,
+    "constraints": [["hostname", "UNIQUE"]],
+    "labels": {
+        "environment": "demo",
+        "service": "couchbase"
+    },
+    "maxLaunchDelaySeconds": 60,
+    "upgradeStrategy": {
+        "minimumHealthCapacity": 1,
+        "maximumOverCapacity": 1
+    },
+    "uris": []
+}

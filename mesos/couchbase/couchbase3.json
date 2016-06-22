@@ -1,0 +1,80 @@
+{
+    "id": "/couchbase3",
+    "cpus": 1,
+    "mem": 1024,
+    "container": {
+        "type": "DOCKER",
+        "volumes": [
+            {
+                "containerPath": "/opt/couchbase/var",
+                "hostPath": "/tmp/couchbase3/data",
+                "mode": "RW"
+            }
+        ],
+        "docker": {
+            "image": "couchbase:4.1.0",
+            "network": "BRIDGE",
+            "portMappings": [
+                {
+                    "containerPort": 8091,
+                    "hostPort": 8091,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 8092,
+                    "hostPort": 8092,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 11207,
+                    "hostPort": 11207,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 11209,
+                    "hostPort": 11209,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 11210,
+                    "hostPort": 11210,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 11211,
+                    "hostPort": 11211,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 18091,
+                    "hostPort": 18091,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 18092,
+                    "hostPort": 18092,
+                    "protocol": "tcp"
+                }
+            ],
+            "privileged": false,
+            "parameters": [
+                {
+                    "key": "link",
+                    "value": "mesos_consul_1:consul"
+                },
+                {
+                    "key": "restart",
+                    "value": "always"
+                }
+            ],
+            "forcePullImage": false
+        }
+    },
+    "instances": 1,
+    "env": {
+      "DVDI_VOLUME_NAME": "couchbase3",
+      "DVDI_VOLUME_DRIVER": "rexray",
+      "DVDI_VOLUME_OPTS": "size=32,overwritefs=true",
+      "DVDI_VOLUME_CONTAINERPATH": "/tmp/couchbase3/data"
+    }
+}
